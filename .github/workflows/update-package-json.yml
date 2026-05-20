@@ -22,6 +22,7 @@ jobs:
           
     - name: Update
       run: |
+        # https://www.npmjs.com/package/@actions/tool-cache?activeTab=dependencies
         cat > setup-linters/package.json <<'EOF'
         {
           "name": "setup-linters",
@@ -35,7 +36,7 @@ jobs:
           "license": "Apache-2.0",
           "dependencies": {
             "@actions/core": "^3.0.1",
-            "@actions/io": "^1.1.3",
+            "@actions/io": "^3.0.2",
             "@actions/tool-cache": "^4.0.0"
           }
         }
