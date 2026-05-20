@@ -44,13 +44,17 @@ jobs:
       run: |
         npm install
 
-    - name: Show regenerated package-lock.json
+    - name: Show regenerated node-modules package-lock.json
       run: |
-        cat setup-linters/package-lock.json
+        cat node_modules/.package-lock.json
+
+    - name: Show regenerated root package-lock.json
+      run: |
+        cat package-lock.json
 
     - name: Upload regenerated lockfile
       uses: actions/upload-artifact@v4
       with:
-        name: setup-linters-package-lock
-        path: setup-linters/package-lock.json
+        name: node-mdoules-package-lock
+        path: node_modules/.package-lock.json
       
