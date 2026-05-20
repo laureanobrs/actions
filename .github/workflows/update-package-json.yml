@@ -7,6 +7,8 @@ jobs:
   update-package-json:
     name: Update package json
     runs-on: ubuntu-24.04
+    permissions:
+      contents: write
     steps:
     - name: Check out revision
       uses: actions/checkout@v4
@@ -55,18 +57,25 @@ jobs:
       run: |
         cat package-lock.json
 
-    - name: Tree files & create tar
+
+    - name: Commit and push changes to new branch
       run: |
-        tree .
-        tar \
-          --exclude='./output.tar.gz' \
-          --exclude='./.git' \
-          -czf output.tar.gz .
-        ls -lh
-        
-    - name: Upload regenerated lockfile
-      uses: actions/upload-artifact@v4
-      with:
-        name: node-mdoules-package-lock
-        path: output.tar.gz
-      
+        BRANCH="update-setup-linters-lock-${GITHUB_RUN_ID}"
+
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+        git checkout -b "$BRANCH"
+
+        git add .
+
+        if git diff --cached --quiet; then
+          echo "No changes to commit."
+          exit 0
+        fi
+
+        git commit -m "Update"
+        git push origin "$BRANCH"
+
+        echo "Pushed changes to branch: $BRANCH"
+    
