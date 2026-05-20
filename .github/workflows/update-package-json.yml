@@ -58,7 +58,10 @@ jobs:
     - name: Tree files & create tar
       run: |
         tree .
-        tar -czf output.tar.gz .
+        tar \
+          --exclude='./output.tar.gz' \
+          --exclude='./.git' \
+          -czf output.tar.gz .
         ls -lh
         
     - name: Upload regenerated lockfile
