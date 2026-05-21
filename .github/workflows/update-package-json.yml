@@ -42,9 +42,19 @@ jobs:
         }
         EOF
 
+    - name: Debug info before
+      run: |
+        npm ls --workspace setup-linters
+        npm ls --all --workspace setup-linters
+
     - name: Regenerate package-lock.json
       run: |
         npm install
+
+    - name: Debug info after
+      run: |
+        npm ls --workspace setup-linters
+        npm ls --all --workspace setup-linters
 
     - name: Show git status
       run: git status
