@@ -45,7 +45,9 @@ jobs:
     - name: Debug info before
       run: |
         npm ls --workspace setup-linters || true
-        #npm ls --all --workspace setup-linters
+        echo
+        echo
+        npm ls --all --workspace setup-linters || true
 
     - name: Regenerate package-lock.json
       run: |
@@ -54,7 +56,9 @@ jobs:
     - name: Debug info after
       run: |
         npm ls --workspace setup-linters || true
-        #npm ls --all --workspace setup-linters
+        echo
+        echo
+        npm ls --all --workspace setup-linters || true
 
     - name: Show git status
       run: git status
