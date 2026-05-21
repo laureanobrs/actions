@@ -20,7 +20,12 @@ jobs:
       with:
         node-version: 24
 
-        
+    - name: Debug info before package.json update
+      run: |
+        npm ls --workspace setup-linters || true
+        echo
+        echo
+        npm ls --all --workspace setup-linters || true
           
     - name: Update
       run: |
