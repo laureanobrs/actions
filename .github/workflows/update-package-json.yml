@@ -43,7 +43,6 @@ jobs:
         EOF
 
     - name: Regenerate package-lock.json
-      working-directory: setup-linters
       run: |
         npm install
 
