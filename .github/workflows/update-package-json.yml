@@ -51,7 +51,7 @@ jobs:
 
     - name: Regenerate package-lock.json
       run: |
-        npm install
+        npm install --install-strategy=shallow
 
     - name: Debug info after
       run: |
